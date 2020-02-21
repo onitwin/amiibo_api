@@ -1,28 +1,41 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <!-- <filter-controls/> -->
+    <list-all :allAmiibo="filteredAmiibo"></list-all>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import ListAll from './components/ListAll.vue';
+import FilterControls from './components/FilterControls.vue'
+import {eventBus} from './main.js';
 
 export default {
   name: 'App',
-  components: {
-    HelloWorld
+  data(){
+    return{
+      allAmiibo:[],
+      chosenAmiibo:null,
+      filteredAmiibo: []
+    }
+
+  },
+  mounted(){
+    fetch('https://www.amiiboapi.com/api/amiibo/')//data now loading
+    .then(res => res.json())
+    .then (data => {
+      this.allAmiibo=data;
+      this.filteredAmiibo = data;
+    })
+  },
+  components:{
+    "list-all":ListAll,
+    "filter-controls": FilterControls
+
   }
 }
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+
 </style>
