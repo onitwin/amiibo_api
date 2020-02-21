@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <!-- <filter-controls/> -->
+    <filter-controls/>
     <list-all :allAmiibo="filteredAmiibo"></list-all>
   </div>
 </template>
@@ -16,7 +16,8 @@ export default {
     return{
       allAmiibo:[],
       chosenAmiibo:null,
-      filteredAmiibo: []
+      filteredAmiibo: [],
+      selectedGame:null
     }
 
   },
@@ -26,6 +27,10 @@ export default {
     .then (data => {
       this.allAmiibo=data;
       this.filteredAmiibo = data;
+
+      eventBus.$on('game-selected',(game)=>{
+        this.selectedGame=game
+      })
     })
   },
   components:{

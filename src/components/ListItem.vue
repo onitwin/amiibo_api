@@ -30,7 +30,8 @@ li{
 
 #container{
   width:200px;
-  /* border: 1pt solid blue; */
+  border: 4pt double blue;
+  border-radius: 25px;
   display: inline-block;
   margin:20px;
   text-align:center;
