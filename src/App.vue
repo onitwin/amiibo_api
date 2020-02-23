@@ -16,8 +16,8 @@ export default {
     return{
       allAmiibo:[],
       chosenAmiibo:null,
-      filteredAmiibo: [],
-      selectedGame:null
+      selectedGame:null,
+      filteredAmiibo:[]
     }
 
   },
@@ -25,8 +25,8 @@ export default {
     fetch('https://www.amiiboapi.com/api/amiibo/')//data now loading
     .then(res => res.json())
     .then (data => {
-      this.allAmiibo=data;
-      this.filteredAmiibo = data;
+      this.allAmiibo=data.amiibo;
+      this.filteredAmiibo = data.amiibo;
 
       eventBus.$on('game-selected',(game)=>{
         this.selectedGame=game
@@ -37,10 +37,18 @@ export default {
     "list-all":ListAll,
     "filter-controls": FilterControls
 
+  },
+  computed:{
+    filters:function(){
+      return this.filteredAmiibo = this.filteredAmiibo.filter(amiibo => amiibo.gameSeries === this.selectedGame.name)}
+
+
   }
+
+
+
 }
 </script>
 
 <style>
-
 </style>

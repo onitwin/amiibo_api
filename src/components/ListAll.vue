@@ -1,7 +1,7 @@
 <template lang="html">
 <div>
   <ul>
-    <list-item v-for="(amiibo, index) in allAmiibo.amiibo" :amiibo="amiibo" :key="index"></list-item>
+    <list-item v-for="(amiibo, index) in allAmiibo" :amiibo="amiibo" :key="index"></list-item>
   </ul>
   </div>
 

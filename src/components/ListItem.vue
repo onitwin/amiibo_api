@@ -5,7 +5,7 @@
         <h4>"{{amiibo.name}}"</h4>
         <img :src="amiibo.image">
         <br>
-        <button>Add To Owned</button>
+        <!-- <button>Add To Owned</button> -->
       </li>
   </div>
 
